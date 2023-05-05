@@ -27,10 +27,15 @@ model Category {
 }
 
 model Careers {
-    id             Int      @id @default(autoincrement())
-    careerName     String
-    careerCategory Category @relation(fields: [categoryId], references: [id])
-    categoryId     Int      @unique
-    createdAt      DateTime @default(now())
-    updatedAt      DateTime @updatedAt
+    id                Int      @id @default(autoincrement())
+    careerName        String
+    careerDescription String
+    hrName            String
+    hrEmail           String
+    officeName        String
+    officeAddress     String
+    careerCategory    Category @relation(fields: [categoryId], references: [id])
+    categoryId        Int      @unique
+    createdAt         DateTime @default(now())
+    updatedAt         DateTime @updatedAt
 }

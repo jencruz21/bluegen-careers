@@ -35,7 +35,7 @@ app.use(express.json())
 /**
  * Route initialization
  */
-app.use("/careers", CareersRoute)
+app.use("/careers/admin", CareersRoute)
 
 
 app.listen(process.env.PORT, () => {

@@ -1,18 +1,16 @@
 import express from "express"
 import logger from "../utils/logger.utils.js"
+import * as CareersController from "../controllers/careers/admin/careers.admin.controller.js"
+import * as CategoryController from "../controllers/careers/admin/category.admin.controller.js"
+
 const router = express.Router()
 
-router.get("", (req, res) => {
-    logger.info("Hello World")
-    return res.status(200).render("careers/client/index")
-})
+router.get("/", CareersController.getAllCareers)
 
-router.post("/search", (req, res) => {
-    const query = req.body.q
+router.post("/insert-career", CareersController.insertCareer)
 
-    return res.status(200).json({
-        query
-    })
-})
+// Career Category
+router.post("/insert-category", CategoryController.insertCategory)
+router.post("/update-category/:id", CategoryController.updateCategory)
 
 export default router
