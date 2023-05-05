@@ -56,6 +56,30 @@ export const updateCategory = async (req, res) => {
 export const getCategories = async (req, res) => {
     try {
         const result = await prisma.careers.findMany()
+
+        return res.status(200).json(result)
+    } catch (error) {
+        logger.error(`${error.name}: ${error.message}`)
+        return res.status(400).json({
+            error: "Bad Request",
+            statusCode: res.statusCode
+        })
+    }
+}
+
+export const deleteCategoryById = async (req, res) => {
+    try {
+        const { id } = req.params
+        const categoryId = parseInt(id)
+        
+        const result = await prisma.category.delete({
+            where: {
+                id: categoryId
+            }
+        })
+        logger.info("Deleted Category: " + result)
+
+        return res.status(200).json(result)
     } catch (error) {
         logger.error(`${error.name}: ${error.message}`)
         return res.status(400).json({
