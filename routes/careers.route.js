@@ -7,7 +7,12 @@ const router = express.Router()
 
 router.get("/", CareersController.getAllCareers)
 
+router.get("/create-career", CareersController.createCareer)
 router.post("/insert-career", CareersController.insertCareer)
+router.post("/update-career/:id", CareersController.updateCareerById)
+router.get("/delete-career/:id", CareersController.deleteCareerById)
+router.get("/edit-career/:id", CareersController.editCareerById)
+router.get("/get-career/:id", CareersController.getCareerById)
 
 // Career Category
 router.post("/insert-category", CategoryController.insertCategory)

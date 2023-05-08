@@ -4,7 +4,10 @@
 import express from "express"
 import dotenv from "dotenv"
 import logger from "./utils/logger.utils.js"
-// import path from "path"
+import path from "path"
+import { fileURLToPath } from 'url'
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 /**
  * Route Imports
@@ -31,6 +34,9 @@ app.use(express.urlencoded({
     extended: false
 }))
 app.use(express.json())
+app.use("/admin", express.static(path.resolve(__dirname, "public/views/admin")))
+app.use("/client", express.static(path.resolve(__dirname, "public/views/client")))
+
 
 /**
  * Route initialization
