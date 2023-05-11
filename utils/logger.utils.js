@@ -1,7 +1,16 @@
 import winston from "winston"
-import path from "path"
+
+const myFormat = winston.format.printf(({ level, message, timestamp }) => {
+    return `${level.toUpperCase()}:${timestamp} - ${message}`;
+})
 
 const logger = winston.createLogger({
+    format: winston.format.combine(
+        winston.format.timestamp({ 
+            format: "YYYY-MM-DD HH:mm:ss"
+        }),
+        myFormat
+    ),
     transports: [
         new winston.transports.Console({
             json: false

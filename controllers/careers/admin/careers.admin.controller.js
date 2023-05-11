@@ -5,7 +5,11 @@ const prisma = new PrismaClient()
 export const getAllCareers = async (req, res) => {
     try {
         logger.info(`URL Loaded: ${req.url}`)
-        const careers = await prisma.careers.findMany()
+        const careers = await prisma.careers.findMany({
+            include: {
+                careerCategory: true
+            }
+        })
         logger.info("Careers loaded successfully")
         return res.status(200).render("admin/careers", {
             careers: careers
@@ -69,22 +73,24 @@ export const insertCareer = async (req, res) => {
             hr_email,
             hr_name,
             office_name,
-            office_location
+            office_address
         } = req.body
+
+        const careerCategoryId = parseInt(career_category)
 
         const result = await prisma.careers.create({
             data: {
                 careerName: career_name,
-                categoryId: career_category,
-                careerDescripttion: career_description,
+                categoryId: careerCategoryId,
+                careerDescription: career_description,
                 hrName: hr_name,
                 hrEmail: hr_email,
-                officeLocation: office_location,
+                officeAddress: office_address,
                 officeName: office_name
             }
         })
         logger.info("Result Inserted: " + result)
-        return res.status(200).redirect("/careers")
+        return res.status(200).redirect("/careers/admin")
     } catch (error) {
         logger.error(`${error.name}: ${error.message}`)
         return res.status
@@ -108,7 +114,8 @@ export const editCareerById = async (req, res) => {
         })
         logger.info("Career loaded successfully")
         return res.status(200).render("admin/edit-career", {
-            career
+            career,
+            categories: await fetchCategories()
         })
     } catch (error) {
         logger.error(`${error.name}: ${error.message}`)
@@ -125,8 +132,22 @@ export const editCareerById = async (req, res) => {
 
 export const updateCareerById = async (req, res) => {
     try {
+        const { career_name, career_category, career_description, office_name } = req.body
         const { id } = req.params 
-    } catch (error) {
+        const result = await prisma.careers.update({
+            where: {
+                id: parseInt(id)
+            },
+            data: {
+                careerName: career_name,
+                categoryId: parseInt(career_category),
+                careerDescription: career_description,
+                officeName: office_name
+            }
+        })
+        return res.status(200).redirect("/careers/admin")
+    } 
+     catch (error) {
         logger.error(`${error.name}: ${error.message}`)
         return res.status(400).json({
             message: "Bad Request"
@@ -148,7 +169,7 @@ export const deleteCareerById = async (req, res) => {
         })
 
         logger.info("Career Deleted: " + result)
-        return res.status(200).redirect("/careers")
+        return res.status(200).redirect("/careers/admin")
     
     } catch (error) {
         logger.error(`${error.name}: ${error.message}`)
@@ -170,10 +191,14 @@ export const fetchCategories = async (req, res) => {
         return categories
     } catch (error) {
         logger.error(`${error.name}: ${error.message}`)
-        return "Bad Query"
+        return
     }
 }
 
 /**
  * End
  */
+
+export const dashBoard = async (req, res) => {
+    return res.status(200).render("admin/dashboard")
+}

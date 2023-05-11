@@ -1,1 +1,49 @@
-<%- include() %>
+<%- include('includes/header.ejs') %>
+    <div class="container">
+        <div class="rounded shadow-sm p-3 mt-3">
+            <h3 class="text-center">
+                Edit Career
+            </h3>
+            <form action="/careers/admin/update-career/<%= career.id %>" method="post" class="mt-3">
+
+                <div class="form-floating mb-3">
+                    <input type="text" name="career_name" id="career_name" class="form-control" placeholder="career name" value="<%= career.careerName %>">
+                    <label for="career_name">Career Name</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea name="career_description" id="career_description" class="form-control" placeholder="career desc" style="height: 100px"><%= career.careerDescription %></textarea>
+                    <label for="career_description">Career Description</label>
+                </div>
+                
+                <div class="form-floating mb-3">
+                    <input type="text" name="office_name" id="office_name" class="form-control" placeholder="office name" value="<%= career.officeName %>">
+                    <label for="office_name">Office Name</label>
+                </div>
+
+                <!-- This is for the hidden fields  -->
+                <div>
+                    <input type="hidden" name="hr_name" value="John Doe">
+                    <input type="hidden" name="hr_email" value="bluegenesistech@gmail.com">
+                    <input type="hidden" name="office_address" value="Blue Genesis Information Technology">
+                </div>
+
+                <div class="form-floating mb-3">
+                    <select name="career_category" id="career_category" class="form-select">
+                        <option selected disabled>S E L E C T</option>
+                        <% categories.forEach(category => { %>
+                            <% if (category.id === career.categoryId) { %>
+                                <option value="<%= category.id %>" selected><%= category.categoryName %></option>
+                            <% } else { %>
+                                <option value="<%= category.id %>"><%= category.categoryName %></option>
+                            <% } %>
+                        <% }) %>
+                    </select>
+                    <label for="career_category">Career Category</label>
+                </div>
+
+                <input type="submit" value="Create Career" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+<%- include('includes/footer.ejs') %>

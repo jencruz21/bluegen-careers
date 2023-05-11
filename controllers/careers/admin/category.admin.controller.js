@@ -83,8 +83,7 @@ export const deleteCategoryById = async (req, res) => {
     } catch (error) {
         logger.error(`${error.name}: ${error.message}`)
         return res.status(400).json({
-            error: "Bad Request",
-            statusCode: res.statusCode
+            message: "Bad Request",
         })
     }
 }

@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User {
-    id            String @id @default(uuid())
+    id            Int    @id @default(autoincrement())
     firstName     String
     lastName      String
     streetAddress String
@@ -19,7 +19,7 @@ model User {
 }
 
 model Category {
-    id           String   @id @default(uuid())
+    id           Int      @id @default(autoincrement())
     categoryName String
     Career       Careers?
     createdAt    DateTime @default(now())
@@ -27,15 +27,29 @@ model Category {
 }
 
 model Careers {
-    id                String   @id @default(uuid())
+    id                Int        @id @default(autoincrement())
     careerName        String
     careerDescription String
     hrName            String
     hrEmail           String
     officeName        String
     officeAddress     String
-    careerCategory    Category @relation(fields: [categoryId], references: [id])
-    categoryId        String   @unique
-    createdAt         DateTime @default(now())
-    updatedAt         DateTime @updatedAt
+    careerCategory    Category   @relation(fields: [categoryId], references: [id])
+    categoryId        Int        @unique
+    message           Messages?
+    createdAt         DateTime   @default(now())
+    updatedAt         DateTime   @updatedAt
+}
+
+model Messages {
+    id                   Int      @id @default(autoincrement())
+    subject              String
+    message              String
+    sender           String
+    senderEmail          String
+    senderContactDetails String
+    career               Careers  @relation(fields: [careerId], references: [id])
+    careerId             Int      @unique
+    createdAt            DateTime @default(now())
+    updatedAt            DateTime @updatedAt
 }

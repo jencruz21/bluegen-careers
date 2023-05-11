@@ -1,0 +1,51 @@
+<%- include('includes/header.ejs') %>
+<div class="container">
+    <h1 class="text-start my-5">
+        Come on, find a career!
+    </h1>
+    <div class="my-5">
+        <div class="form-group">
+            <input type="text" name="search" id="search" class="form-control fa" placeholder="&#xF002;&nbsp;&nbsp;  S e a r c h">
+        </div>
+    </div>
+    <ul class="nav justify-content-center nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#">App Development</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Marketing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#">CSR</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#">Graphics Design</a>
+        </li>
+    </ul>
+    <div class="container">
+      <div class="d-flex flex-wrap justify-content-evenly">
+
+        <% careers.forEach(career => { %>
+          <div class="rounded-3 border border-3 border-dark p-4 mt-3">
+            <h3 class="text-start"><%= career.careerName %></h3>
+            <p><%= career.careerCategory.categoryName %></p>
+            <div class="row justify-content-between">
+              <div class="col-md-6">
+                <a style="text-decoration: none; color:black" href="/careers/career/<%= career.id%>">
+                  <i class="fa-solid fa-ellipsis"></i>
+                </a>
+              </div>
+              <div class="col-md-6 text-end">
+                <a style="text-decoration: none; color:black" href="/careers/career/<%= career.id %>#contacts">
+                  <i class="fa-regular fa-paper-plane mx-2"></i>
+                </a>
+                <i class="fa-solid fa-phone"></i>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+
+      </div>
+    </div>
+</div>
+<%- include('includes/footer.ejs') %>

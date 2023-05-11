@@ -3,8 +3,42 @@
         <h3 class="text-center my-3">
             Careers Page (Admin)
         </h3>
-        <div class="d-flex flex-column">
-
-        </div>
+        <table id="myTable" class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Career Name
+                    </th>
+                    <th>
+                        Career Category
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Options
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% careers.forEach(career => { %>
+                    <tr>
+                        <td><%= career.careerName %></td>
+                        <td><%= career.careerCategory.categoryName %></td>
+                        <td><%= career.careerDescription %></td>
+                        <td>
+                            <div class="row row-cols-2">
+                                <div class="col-sm-6">
+                                    <a href="/careers/admin/edit-career/<%= career.id %>" class="btn btn-success">Edit</a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <a href="/careers/admin/delete-career/<%= career.id %>" class="btn btn-danger">Delete</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
     </div>
 <%- include('includes/footer.ejs') %>

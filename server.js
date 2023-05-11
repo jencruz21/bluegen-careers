@@ -12,7 +12,8 @@ const __dirname = path.dirname(__filename)
 /**
  * Route Imports
  */
-import CareersRoute from "./routes/careers.route.js"
+import CareersAdminRoute from "./routes/careers.admin.route.js"
+import CareersClientRoute from "./routes/careers.client.route.js"
 
 /**
  * Package Initialization
@@ -34,14 +35,14 @@ app.use(express.urlencoded({
     extended: false
 }))
 app.use(express.json())
-app.use("/admin", express.static(path.resolve(__dirname, "public/views/admin")))
-app.use("/client", express.static(path.resolve(__dirname, "public/views/client")))
-
+app.use("/js", express.static(path.resolve(__dirname, "public/js")))
+app.use("/css", express.static(path.resolve(__dirname, "public/css")))
 
 /**
  * Route initialization
  */
-app.use("/careers/admin", CareersRoute)
+app.use("/careers", CareersClientRoute)
+app.use("/careers/admin", CareersAdminRoute)
 
 
 app.listen(process.env.PORT, () => {

@@ -4,7 +4,7 @@
             <h3 class="text-center">
                 Create a Career
             </h3>
-            <form action="/career/admin/create-career" method="post" class="mt-3">
+            <form action="/careers/admin/insert-career" method="post" class="mt-3">
 
                 <div class="form-floating mb-3">
                     <input type="text" name="career_name" id="career_name" class="form-control" placeholder="career name">
@@ -19,6 +19,13 @@
                 <div class="form-floating mb-3">
                     <input type="text" name="office_name" id="office_name" class="form-control" placeholder="office name">
                     <label for="office_name">Office Name</label>
+                </div>
+
+                <!-- This is for the hidden fields  -->
+                <div>
+                    <input type="hidden" name="hr_name" value="John Doe">
+                    <input type="hidden" name="hr_email" value="bluegenesistech@gmail.com">
+                    <input type="hidden" name="office_address" value="Blue Genesis Information Technology">
                 </div>
 
                 <div class="form-floating mb-3">
