@@ -1,0 +1,45 @@
+<%- include('includes/header.ejs') %>
+    <div class="container">
+        <h3 class="text-center my-3">
+            Careers Page (Admin)
+        </h3>
+        <table id="myTable" class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Subject
+                    </th>
+                    <th>
+                        Message
+                    </th>
+                    <th>
+                        Sender
+                    </th>
+                    <th>
+                        Sender Email
+                    </th>
+                    <th>
+                        Options
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% messages.forEach(message => { %>
+                    <tr>
+                        <td><%= message.subject %></td>
+                        <td><%= message.message %></td>
+                        <td><%= message.sender %></td>
+                        <td><%= message.senderEmail %></td>
+                        <td>
+                            <div class="row row-cols-2">
+                                <div class="col-sm-6">
+                                    <a href="/careers/admin/edit-career/<%= message.id %>" class="btn btn-success">Send Message</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+<%- include('includes/footer.ejs') %>

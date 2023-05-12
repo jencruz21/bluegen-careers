@@ -36,7 +36,7 @@ model Careers {
     officeAddress     String
     careerCategory    Category   @relation(fields: [categoryId], references: [id])
     categoryId        Int        @unique
-    message           Messages?
+    message           Messages[]
     createdAt         DateTime   @default(now())
     updatedAt         DateTime   @updatedAt
 }
@@ -44,12 +44,12 @@ model Careers {
 model Messages {
     id                   Int      @id @default(autoincrement())
     subject              String
-    message              String
-    sender           String
+    message              String   @db.LongText
+    sender               String
     senderEmail          String
     senderContactDetails String
     career               Careers  @relation(fields: [careerId], references: [id])
-    careerId             Int      @unique
+    careerId             Int      
     createdAt            DateTime @default(now())
     updatedAt            DateTime @updatedAt
 }

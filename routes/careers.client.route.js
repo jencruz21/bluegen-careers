@@ -5,11 +5,7 @@ const router = express.Router()
 router.get("/", CareersClientController.getAllCareers)
 router.get("/career/:id", CareersClientController.getCareerById)
 
-router.post("/message/:id", (req, res) => {
-    return res.status(200).json({
-        message: "Hello World"
-    })
-})
+router.post("/message/:id", CareersClientController.sendMessage)
 /**
  * Search Api
  */

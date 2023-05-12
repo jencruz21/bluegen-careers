@@ -53,8 +53,11 @@ export const sendMessage = async (req, res) => {
             sender,
             senderEmail,
             senderContactDetails,
-            careerId,
         } = req.body
+
+        const { id } = req.params
+
+        const contactDetails = senderContactDetails.length < 1 ? "" : senderContactDetails
 
         const result = await prisma.messages.create({
             data: {
@@ -62,8 +65,8 @@ export const sendMessage = async (req, res) => {
                 message,
                 sender,
                 senderEmail,
-                senderContactDetails,
-                careerId
+                senderContactDetails: contactDetails,
+                careerId: parseInt(id)
             }
         })
         console.log(result)

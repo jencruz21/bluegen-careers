@@ -202,3 +202,19 @@ export const fetchCategories = async (req, res) => {
 export const dashBoard = async (req, res) => {
     return res.status(200).render("admin/dashboard")
 }
+
+
+export const getMessages = async (req, res) => {
+    try {
+        const result = await prisma.messages.findMany()
+
+        return res.status(200).render('admin/messages', {
+            messages: result
+        })
+    } catch (error) {
+        logger.error(`${error.name}: ${error.message}`)
+        return res.status(400).json({
+            message: "Bad Request",
+        })
+    }
+}

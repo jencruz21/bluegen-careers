@@ -22,5 +22,6 @@ router.post("/update-category/:id", CategoryController.updateCategory)
 router.get("/categories", CategoryController.getCategories)
 router.get("/delete-category/:id", CategoryController.deleteCategoryById)
 
-// 
+// messages
+router.get("/messages", CareersController.getMessages)
 export default router

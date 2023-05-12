@@ -1,7 +1,7 @@
 <%- include('includes/header.ejs') %>
 <div class="container">
     <h1 class="text-start my-5">
-        Come on, find a career!
+        Come on, find a career! @BlueGenesis
     </h1>
     <div class="my-5">
         <div class="form-group">
@@ -10,24 +10,24 @@
     </div>
     <ul class="nav justify-content-center nav-tabs">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">App Development</a>
+          <a class="nav-link text-dark" aria-current="page" href="#">App Development</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Marketing</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">CSR</a>
+          <a class="nav-link text-dark" aria-current="page" href="#">CSR</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">Graphics Design</a>
+          <a class="nav-link text-dark" aria-current="page" href="#">Graphics Design</a>
         </li>
     </ul>
     <div class="container">
       <div class="d-flex flex-wrap justify-content-evenly">
 
         <% careers.forEach(career => { %>
-          <div class="rounded-3 border border-3 border-dark p-4 mt-3">
-            <h3 class="text-start"><%= career.careerName %></h3>
+          <div class="items rounded-3 border border-3 border-dark p-4 mt-3">
+            <h3 class="text-start careerName"><%= career.careerName %></h3>
             <p><%= career.careerCategory.categoryName %></p>
             <div class="row justify-content-between">
               <div class="col-md-6">

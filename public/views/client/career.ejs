@@ -4,7 +4,7 @@
         <!-- This is the details -->
         <div class="row">
             <div class="col-6">
-                <h3 class="text-start">
+                <h3 class="text-start mb-5">
                     <%= career.careerName %>
                 </h3>
             </div>
@@ -20,7 +20,7 @@
     </div>
     <div class="col-md mt-5">
         <!-- This is the form -->
-        <h2 class="text-start fw-bolder">
+        <h2 class="text-end text-sm-start fw-bolder">
             Want this job? Send us a message!
         </h2>
         <h2 class="text-start fw-light my-3">
@@ -32,35 +32,35 @@
         <p>
             <%= career.officeAddress %> | <span class="fw-bold">Office Address</span>
         </p>
-        <form action="/careers/message" method="post" class="mt-3">
+        <form id="contacts" action="/careers/message/<%= career.id %>" method="post" class="mt-3">
             <div class="form-floating">
-                <input type="text" name="subject" id="subject" class="form-control mb-3" placeholder="subject">
+                <input type="text" name="subject" id="subject" class="form-control mb-3 border border-dark border-2" placeholder="subject">
                 <label for="subject">Subject</label>
             </div>
             <div class="form-floating">
-                <textarea type="text" name="message" id="message" class="form-control mb-3" style="height: 250px" placeholder="message"></textarea>
+                <textarea type="text" name="message" id="message" class="form-control mb-3 border border-dark border-2" style="height: 250px" placeholder="message"></textarea>
                 <label for="message">Type your message here</label>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-floating">
-                        <input type="text" name="subject" id="subject" class="form-control mb-3" placeholder="subject">
-                        <label for="subject">Your name</label>
+                        <input type="text" name="sender" id="sender" class="form-control mb-3 border border-dark border-2" placeholder="subject">
+                        <label for="sender">Your name</label>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-floating">
-                        <input type="text" name="subject" id="subject" class="form-control mb-3" placeholder="subject">
-                        <label for="subject">Your Email</label>
+                        <input type="text" name="senderEmail" id="senderEmail" class="form-control mb-3 border border-dark border-2" placeholder="subject">
+                        <label for="senderEmail">Your Email</label>
                     </div>
                 </div>
             </div>
 
             <div class="form-floating">
-                <input type="text" name="senderContactDetails" id="senderContactDetails" class="form-control mb-3" placeholder="subject">
+                <input type="text" name="senderContactDetails" id="senderContactDetails" class="form-control mb-3 border border-dark border-2" placeholder="subject">
                 <label for="senderContactDetails">Your Address (Optional)</label>
             </div>
-            <input type="submit" value="&#xf1d8; Send the Message" class="btn btn-primary mb-3">
+            <input type="submit" value="&#xf1d8;  M e s s a g e  U s !" class="btn btn-primary mb-3 fa p-3">
         </form>
     </div>
 </div>
