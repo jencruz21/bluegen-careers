@@ -29,7 +29,7 @@ model Category {
 model Careers {
     id                Int        @id @default(autoincrement())
     careerName        String
-    careerDescription String
+    careerDescription String     @db.LongText
     hrName            String
     hrEmail           String
     officeName        String

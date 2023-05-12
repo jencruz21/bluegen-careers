@@ -1,19 +1,67 @@
 <%- include('includes/header.ejs') %>
 <div class="container">
-    <div class="row row-cols-2">
-        <div class="col-md-6">
-            <!-- This is the details -->
-            <h3 class="text-start">
-                Career Name
-            </h3>
-            h6.text
+    <div class="col mt-5">
+        <!-- This is the details -->
+        <div class="row">
+            <div class="col-6">
+                <h3 class="text-start">
+                    <%= career.careerName %>
+                </h3>
+            </div>
+            <div class="col-6">
+                <p class="text-end">
+                    <%= career.careerCategory.categoryName %> | <span class="fw-bold">Category</span>
+                </p>
+            </div>
+            <p>
+                <%= career.careerDescription %>
+            </p>
         </div>
-        <div class="col-md-6">
-            <!-- This is the form -->
-            <form action="/careers/message/" method="post" class="mt-3">
+    </div>
+    <div class="col-md mt-5">
+        <!-- This is the form -->
+        <h2 class="text-start fw-bolder">
+            Want this job? Send us a message!
+        </h2>
+        <h2 class="text-start fw-light my-3">
+            Office Details
+        </h2>
+        <p>
+            <%= career.officeName %> | <span class="fw-bold">Office Name</span>
+        </p>
+        <p>
+            <%= career.officeAddress %> | <span class="fw-bold">Office Address</span>
+        </p>
+        <form action="/careers/message" method="post" class="mt-3">
+            <div class="form-floating">
+                <input type="text" name="subject" id="subject" class="form-control mb-3" placeholder="subject">
+                <label for="subject">Subject</label>
+            </div>
+            <div class="form-floating">
+                <textarea type="text" name="message" id="message" class="form-control mb-3" style="height: 250px" placeholder="message"></textarea>
+                <label for="message">Type your message here</label>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="text" name="subject" id="subject" class="form-control mb-3" placeholder="subject">
+                        <label for="subject">Your name</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="text" name="subject" id="subject" class="form-control mb-3" placeholder="subject">
+                        <label for="subject">Your Email</label>
+                    </div>
+                </div>
+            </div>
 
-            </form>
-        </div>
+            <div class="form-floating">
+                <input type="text" name="senderContactDetails" id="senderContactDetails" class="form-control mb-3" placeholder="subject">
+                <label for="senderContactDetails">Your Address (Optional)</label>
+            </div>
+            <input type="submit" value="&#xf1d8; Send the Message" class="btn btn-primary mb-3">
+        </form>
     </div>
 </div>
 <%- include('includes/footer.ejs') %>

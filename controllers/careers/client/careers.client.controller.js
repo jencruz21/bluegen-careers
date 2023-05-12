@@ -9,12 +9,14 @@ export const getCareerById = async (req, res) => {
         const result = await prisma.careers.findFirst({
             where: {
                 id: parseInt(id)
+            },
+            include: {
+                careerCategory: true
             }
         })
-        console.log(result)
         logger.info("Career Successfully Fetched")
         return res.status(200).render("client/career", {
-            career
+            career: result
         })
     } catch (error) {
         logger.error(`${error.name}: ${error.message}`)
